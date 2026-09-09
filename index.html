@@ -3,429 +3,564 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L'Échappée Nomade - Sahara 4x4 Desert Mechanic & Overland Escort</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>L'Échappée Nomade — Sahara 4x4 Desert Mechanic & Overland Escort</title>
+  <meta name="description" content="Overland mechanic escorting 4x4 convoys, rallies and solo travellers across the Moroccan Sahara. Based in Marrakech.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            dune: {
-              50: '#fdf8f4',
-              100: '#faede2',
-              200: '#f5d8c4',
-              300: '#edbd9e',
-              400: '#e19771',
-              500: '#d97746',
-              600: '#ca5c35',
-              700: '#a7452b',
-              800: '#863928',
-              900: '#2b160e',
-              950: '#190c07',
-            },
-            sand: {
-              DEFAULT: '#e6c894',
-              gold: '#d4a359',
-              dark: '#211611',
-              warm: '#fff9f2',
-            }
-          }
-        }
-      }
-    }
-  </script>
   <style>
-    .desert-hero {
-      background: linear-gradient(180deg, rgba(25, 12, 7, 0.75) 0%, rgba(33, 22, 17, 0.95) 100%), url('cover.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+    :root{
+      --sand:#EDE3D0;
+      --panel:#F5EEDF;
+      --ink:#211A12;
+      --ink-soft:#4A4033;
+      --rust:#C2481B;
+      --rust-deep:#9C3812;
+      --khaki:#6E6844;
+      --line:#211A12;
+      --wa:#1FAE54;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--sand);
+      color:var(--ink);
+      font-family:'Archivo',system-ui,sans-serif;
+      font-size:16px;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    ::selection{background:var(--rust);color:var(--panel)}
+    img{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    .display{font-family:'Big Shoulders Display',sans-serif;line-height:.92;letter-spacing:.005em}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+    /* ---------- header ---------- */
+    header{
+      position:sticky;top:0;z-index:40;
+      background:var(--sand);
+      border-bottom:2px solid var(--line);
+    }
+    .head-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-mark{
+      width:42px;height:42px;flex:none;
+      background:var(--rust);color:var(--panel);
+      display:flex;align-items:center;justify-content:center;
+      font-size:19px;border:2px solid var(--line);
+    }
+    .brand-name{font-family:'Big Shoulders Display';font-weight:800;font-size:21px;letter-spacing:.03em;line-height:1}
+    .brand-sub{font-size:11px;font-weight:600;color:var(--ink-soft);margin-top:2px}
+    nav.desktop{display:none;gap:26px;font-weight:600;font-size:14.5px}
+    nav.desktop a{padding:4px 0;border-bottom:2px solid transparent}
+    nav.desktop a:hover{border-bottom-color:var(--rust);color:var(--rust-deep)}
+    .head-actions{display:flex;align-items:center;gap:10px}
+    .lang-btn{
+      font:inherit;font-weight:700;font-size:13px;cursor:pointer;
+      background:transparent;color:var(--ink);
+      border:2px solid var(--line);padding:8px 12px;
+      display:flex;align-items:center;gap:7px;
+    }
+    .lang-btn:hover{background:var(--ink);color:var(--sand)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      font-weight:700;font-size:14.5px;cursor:pointer;
+      padding:12px 22px;border:2px solid var(--line);
+      background:var(--rust);color:#FDF7EC;
+      transition:background .15s ease, transform .15s ease;
+    }
+    .btn:hover{background:var(--rust-deep);transform:translateY(-1px)}
+    .btn.ghost{background:transparent;color:var(--ink)}
+    .btn.ghost:hover{background:var(--ink);color:var(--sand)}
+    .btn.small{padding:9px 16px;font-size:13px}
+    .head-cta{display:none}
+    .burger{
+      background:none;border:2px solid var(--line);color:var(--ink);
+      width:42px;height:42px;font-size:17px;cursor:pointer;
+    }
+    #mobileMenu{border-top:2px solid var(--line);background:var(--panel);padding:18px 20px;display:none}
+    #mobileMenu.open{display:block}
+    #mobileMenu a{display:block;padding:11px 0;font-weight:600;font-size:15.5px;border-bottom:1px solid rgba(33,26,18,.15)}
+    #mobileMenu .btn{margin-top:16px;width:100%;border-bottom:2px solid var(--line)}
+
+    /* ---------- hero ---------- */
+    .hero{position:relative;border-bottom:2px solid var(--line);overflow:hidden}
+    .hero-grid{display:grid;gap:36px;padding:54px 0 0}
+    .hero h1{font-weight:800;font-size:clamp(56px,11.5vw,132px);text-transform:uppercase}
+    .hero h1 .rust{color:var(--rust)}
+    .hero-sub{max-width:560px;font-size:16.5px;color:var(--ink-soft);margin:20px 0 28px}
+    .hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+    .hero-photo{
+      position:relative;background:var(--rust);
+      border:2px solid var(--line);
+      box-shadow:10px 10px 0 var(--ink);
+    }
+    .hero-photo img{
+      width:100%;height:100%;min-height:280px;object-fit:cover;
+      filter:grayscale(1) contrast(1.08) brightness(.96);
+      mix-blend-mode:multiply;
+    }
+    .contours{position:absolute;right:-120px;top:-80px;width:640px;opacity:.10;pointer-events:none}
+
+    /* route strip */
+    .route{border-top:2px solid var(--line);background:var(--panel);margin-top:52px}
+    .route-in{display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
+    .route-in::-webkit-scrollbar{display:none}
+    .stop{
+      flex:1;min-width:150px;padding:16px 18px 18px;
+      border-right:1px dashed rgba(33,26,18,.4);
+      display:flex;flex-direction:column;gap:6px;white-space:nowrap;
+    }
+    .stop:last-child{border-right:0}
+    .stop-dot{width:11px;height:11px;border:2.5px solid var(--ink);border-radius:50%;background:var(--sand)}
+    .stop:last-child .stop-dot{background:var(--rust)}
+    .stop-name{font-family:'Big Shoulders Display';font-weight:700;font-size:19px;letter-spacing:.03em}
+    .stop-note{font-size:11.5px;color:var(--ink-soft)}
+
+    /* ---------- sections ---------- */
+    section{padding:76px 0}
+    .sec-head{margin-bottom:44px;max-width:640px}
+    .sec-head h2{font-family:'Big Shoulders Display';font-weight:800;font-size:clamp(34px,5.5vw,54px);text-transform:uppercase;line-height:.95}
+    .sec-head p{color:var(--ink-soft);margin-top:12px;font-size:15.5px}
+    .rule{height:2px;background:var(--line)}
+
+    /* about */
+    .about-grid{display:grid;gap:36px}
+    .about-photo{border:2px solid var(--line);box-shadow:-10px 10px 0 var(--rust)}
+    .about-photo img{width:100%;height:100%;object-fit:cover;min-height:300px;filter:contrast(1.05) saturate(.9)}
+    .about-copy p{color:var(--ink-soft);font-size:15.5px;margin-bottom:16px;max-width:60ch}
+    .spec-rows{margin-top:26px;border-top:2px solid var(--line)}
+    .spec-row{display:flex;justify-content:space-between;gap:20px;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(33,26,18,.25)}
+    .spec-row b{font-family:'Big Shoulders Display';font-weight:800;font-size:30px;color:var(--rust);flex:none}
+    .spec-row span{font-size:14px;font-weight:600;text-align:right}
+
+    /* services — rate-card panel */
+    .services-panel{border:2px solid var(--line);background:var(--panel);display:grid}
+    .service{padding:30px 26px;border-bottom:2px solid var(--line)}
+    .service:last-child{border-bottom:0}
+    .service i{font-size:26px;color:var(--rust);margin-bottom:14px}
+    .service h3{font-family:'Big Shoulders Display';font-weight:700;font-size:26px;text-transform:uppercase;margin-bottom:8px}
+    .service p{font-size:14.5px;color:var(--ink-soft);max-width:52ch}
+
+    /* gear — spec sheet */
+    .gear-sheet{border-top:2px solid var(--line)}
+    .gear-row{display:grid;grid-template-columns:1fr;gap:6px;padding:20px 0;border-bottom:1px solid rgba(33,26,18,.25)}
+    .gear-row h4{font-family:'Big Shoulders Display';font-weight:700;font-size:22px;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+    .gear-row h4 i{color:var(--rust);font-size:18px;width:24px;text-align:center}
+    .gear-row p{font-size:14px;color:var(--ink-soft)}
+
+    /* blog — logbook */
+    .log{border-top:2px solid var(--line)}
+    .log-entry{display:grid;gap:8px;padding:26px 0;border-bottom:1px solid rgba(33,26,18,.25)}
+    .log-tag{font-size:12px;font-weight:700;color:var(--rust);border:1.5px solid var(--rust);padding:3px 9px;width:fit-content}
+    .log-entry h3{font-family:'Big Shoulders Display';font-weight:700;font-size:clamp(22px,3.4vw,30px);line-height:1.05}
+    .log-entry p{font-size:14.5px;color:var(--ink-soft);max-width:72ch}
+    .log-link{font-weight:700;font-size:13.5px;color:var(--rust-deep);display:inline-flex;align-items:center;gap:8px;margin-top:4px}
+    .log-link:hover{color:var(--rust)}
+
+    /* contact */
+    .contact{background:var(--ink);color:var(--sand);border-top:2px solid var(--line)}
+    .contact h2{font-family:'Big Shoulders Display';font-weight:800;font-size:clamp(38px,7vw,72px);text-transform:uppercase;line-height:.95;max-width:760px}
+    .contact .lead{color:#C9BBA4;margin:18px 0 34px;max-width:56ch;font-size:15.5px}
+    .contact-panel{border:2px solid var(--sand);display:grid;gap:0}
+    .contact-cell{padding:20px 24px;border-bottom:2px solid var(--sand)}
+    .contact-cell:last-child{border-bottom:0;padding:0}
+    .contact-cell small{display:block;font-size:12px;font-weight:600;color:#C9BBA4;margin-bottom:3px}
+    .contact-cell strong{font-size:16px;font-weight:700}
+    .contact .btn{width:100%;border:0;padding:20px;font-size:16px}
+
+    footer{background:var(--ink);color:#8A7B64;font-size:12.5px;padding:26px 0;border-top:1px solid rgba(237,227,208,.2)}
+    footer b{color:var(--sand);font-weight:600}
+    .foot-in{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+    /* whatsapp fab */
+    .fab{
+      position:fixed;right:18px;bottom:18px;z-index:50;
+      width:56px;height:56px;border-radius:50%;
+      background:var(--wa);color:#fff;font-size:27px;
+      display:flex;align-items:center;justify-content:center;
+      border:2px solid var(--ink);box-shadow:4px 4px 0 rgba(33,26,18,.6);
+      transition:transform .15s ease;
+    }
+    .fab:hover{transform:scale(1.07)}
+
+    /* focus + motion */
+    a:focus-visible,button:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+    @media (prefers-reduced-motion:reduce){
+      *{transition:none!important;animation:none!important}
+      html{scroll-behavior:auto}
+    }
+
+    /* ---------- responsive ---------- */
+    @media(min-width:760px){
+      .gear-row{grid-template-columns:300px 1fr;align-items:baseline}
+      .log-entry{grid-template-columns:170px 1fr;align-items:start}
+      .log-tag{margin-top:4px}
+      .services-panel{grid-template-columns:repeat(3,1fr)}
+      .service{border-bottom:0;border-right:2px solid var(--line)}
+      .service:last-child{border-right:0}
+      .contact-panel{grid-template-columns:1fr 1fr auto}
+      .contact-cell{border-bottom:0;border-right:2px solid var(--sand)}
+      .contact-cell:last-child{border-right:0}
+    }
+    @media(min-width:920px){
+      nav.desktop{display:flex}
+      .burger{display:none}
+      .head-cta{display:inline-flex}
+      .hero-grid{grid-template-columns:1.25fr 1fr;align-items:end;padding-top:70px}
+      .hero-photo{margin-bottom:52px}
+      .about-grid{grid-template-columns:1fr 1.15fr;align-items:center}
     }
   </style>
 </head>
-<body class="bg-[#180e0a] text-[#f7ede2] font-sans antialiased selection:bg-[#d97746] selection:text-white">
+<body>
 
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/212600000000?text=Hello,%20I%20am%20planning%20a%204x4%20trip%20and%20need%20desert%20mechanical%20escort" target="_blank" class="fixed bottom-5 right-5 z-50 bg-[#25D366] hover:bg-[#20ba59] text-white p-3.5 sm:p-4 rounded-full shadow-2xl transition duration-300 transform hover:scale-110 flex items-center justify-center border-2 border-[#fff9f2]/20">
-    <i class="fa-brands fa-whatsapp text-2xl sm:text-3xl"></i>
+  <!-- WhatsApp FAB -->
+  <a class="fab" href="https://wa.me/212600000000?text=Hello,%20I%20am%20planning%20a%204x4%20trip%20and%20need%20desert%20mechanical%20escort" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
   </a>
 
-  <!-- Header / Navigation -->
-  <header class="border-b border-[#422416] bg-[#1a0e08]/95 backdrop-blur sticky top-0 z-40">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      
-      <!-- Brand Logo -->
-      <a href="#" class="flex items-center space-x-2">
-        <span class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-[#ca5c35] to-[#d4a359] flex items-center justify-center text-white text-base sm:text-lg shadow-md">
-          <i class="fa-solid fa-compass"></i>
+  <!-- Header -->
+  <header>
+    <div class="wrap head-in">
+      <a href="#" class="brand">
+        <span class="brand-mark"><i class="fa-solid fa-compass"></i></span>
+        <span>
+          <span class="brand-name">L'ÉCHAPPÉE NOMADE</span>
+          <span class="brand-sub" data-i18n="tagline">Sahara 4x4 mechanical support</span>
         </span>
-        <div class="leading-tight">
-          <span class="font-black text-base sm:text-lg tracking-wide uppercase text-[#fdf8f4] block">L'Échappée Nomade</span>
-          <span class="text-[9px] sm:text-[10px] text-[#e6c894] tracking-widest uppercase font-semibold" data-i18n="tagline">Sahara 4x4 Mechanical Support</span>
-        </div>
       </a>
-
-      <!-- Desktop Navigation Links -->
-      <nav class="hidden md:flex items-center space-x-6 font-medium text-sm text-[#f5d8c4]">
-        <a href="#about" class="hover:text-[#d4a359] transition" data-i18n="nav_about">About</a>
-        <a href="#services" class="hover:text-[#d4a359] transition" data-i18n="nav_services">Services</a>
-        <a href="#rig" class="hover:text-[#d4a359] transition" data-i18n="nav_rig">The Rig & Gear</a>
-        <a href="#blog" class="hover:text-[#d4a359] transition" data-i18n="nav_blog">Desert Blog</a>
-        <a href="#contact" class="hover:text-[#d4a359] transition" data-i18n="nav_contact">Contact</a>
+      <nav class="desktop">
+        <a href="#about" data-i18n="nav_about">About</a>
+        <a href="#services" data-i18n="nav_services">Services</a>
+        <a href="#rig" data-i18n="nav_rig">Rig & gear</a>
+        <a href="#blog" data-i18n="nav_blog">Field log</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
       </nav>
-
-      <!-- Language Switcher & Mobile Menu Trigger -->
-      <div class="flex items-center space-x-2 sm:space-x-3">
-        <!-- Language Switcher Button -->
-        <button id="langToggleBtn" onclick="toggleLanguage()" class="flex items-center space-x-1 px-2.5 py-1.5 rounded-lg bg-[#2b170e] border border-[#522b1a] text-xs font-bold text-[#e6c894] hover:bg-[#3d2015] transition">
-          <i class="fa-solid fa-globe text-xs"></i>
-          <span id="currentLangLabel">FR</span>
+      <div class="head-actions">
+        <button id="langToggleBtn" class="lang-btn" onclick="toggleLanguage()">
+          <i class="fa-solid fa-globe"></i><span id="currentLangLabel">FR</span>
         </button>
-
-        <!-- Desktop Action Button -->
-        <a href="https://wa.me/212600000000" class="hidden sm:inline-block bg-gradient-to-r from-[#d97746] to-[#d4a359] hover:from-[#ca5c35] hover:to-[#c49247] text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm transition shadow-md shadow-[#d97746]/20" data-i18n="btn_book">
-          Book Escort
-        </a>
-
-        <!-- Mobile Burger Menu Toggle -->
-        <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden text-[#f5d8c4] hover:text-[#d4a359] p-2 text-xl focus:outline-none">
+        <a href="https://wa.me/212600000000" class="btn small head-cta" data-i18n="btn_book">Book escort</a>
+        <button class="burger" onclick="toggleMobileMenu()" aria-label="Menu" aria-expanded="false" id="burgerBtn">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
     </div>
-
-    <!-- Mobile Dropdown Navigation Menu -->
-    <div id="mobileMenu" class="hidden md:hidden bg-[#1f110b] border-t border-[#422416] px-5 py-4 space-y-3">
-      <a href="#about" onclick="toggleMobileMenu()" class="block py-1 text-sm font-medium text-[#f5d8c4] hover:text-[#d4a359]" data-i18n="nav_about">About</a>
-      <a href="#services" onclick="toggleMobileMenu()" class="block py-1 text-sm font-medium text-[#f5d8c4] hover:text-[#d4a359]" data-i18n="nav_services">Services</a>
-      <a href="#rig" onclick="toggleMobileMenu()" class="block py-1 text-sm font-medium text-[#f5d8c4] hover:text-[#d4a359]" data-i18n="nav_rig">The Rig & Gear</a>
-      <a href="#blog" onclick="toggleMobileMenu()" class="block py-1 text-sm font-medium text-[#f5d8c4] hover:text-[#d4a359]" data-i18n="nav_blog">Desert Blog</a>
-      <a href="#contact" onclick="toggleMobileMenu()" class="block py-1 text-sm font-medium text-[#f5d8c4] hover:text-[#d4a359]" data-i18n="nav_contact">Contact</a>
-      <a href="https://wa.me/212600000000" class="block text-center bg-gradient-to-r from-[#d97746] to-[#d4a359] text-white font-bold py-2.5 rounded-xl text-xs uppercase tracking-wider mt-2" data-i18n="btn_book">Book Escort</a>
+    <div id="mobileMenu">
+      <a href="#about" onclick="toggleMobileMenu()" data-i18n="nav_about">About</a>
+      <a href="#services" onclick="toggleMobileMenu()" data-i18n="nav_services">Services</a>
+      <a href="#rig" onclick="toggleMobileMenu()" data-i18n="nav_rig">Rig & gear</a>
+      <a href="#blog" onclick="toggleMobileMenu()" data-i18n="nav_blog">Field log</a>
+      <a href="#contact" onclick="toggleMobileMenu()" data-i18n="nav_contact">Contact</a>
+      <a href="https://wa.me/212600000000" class="btn" data-i18n="btn_book">Book escort</a>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="desert-hero min-h-[75vh] sm:min-h-[85vh] flex items-center justify-center text-center px-4 py-16 sm:py-20 relative">
-    <div class="max-w-3xl relative z-10">
-      <div class="inline-flex items-center gap-2 bg-[#d97746]/25 text-[#e6c894] font-semibold px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs uppercase tracking-widest mb-5 border border-[#d97746]/40 backdrop-blur-md" data-i18n="hero_badge">
-        <i class="fa-solid fa-sun text-[#d4a359]"></i> Marrakech • Merzouga • Zagora • Erg Chigaga
+  <!-- Hero -->
+  <section class="hero" style="padding:0">
+    <svg class="contours" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M80 520 C 140 380, 120 300, 220 240 S 420 160, 520 60" stroke="#211A12" stroke-width="2"/>
+      <path d="M120 540 C 180 400, 160 320, 260 260 S 460 180, 560 80" stroke="#211A12" stroke-width="2"/>
+      <path d="M160 560 C 220 420, 200 340, 300 280 S 500 200, 600 100" stroke="#211A12" stroke-width="2"/>
+      <path d="M200 580 C 260 440, 240 360, 340 300 S 540 220, 640 120" stroke="#211A12" stroke-width="2"/>
+      <path d="M240 600 C 300 460, 280 380, 380 320 S 580 240, 680 140" stroke="#211A12" stroke-width="2"/>
+    </svg>
+    <div class="wrap hero-grid">
+      <div>
+        <h1 class="display">
+          <span data-i18n="hero_line1">Sahara</span><br>
+          <span class="rust" data-i18n="hero_line2">Mechanic</span><br>
+          <span data-i18n="hero_line3">On piste</span>
+        </h1>
+        <p class="hero-sub" data-i18n="hero_subtitle">
+          Specialized overland mechanic escorting international 4x4 convoys, rallies, and solo adventurers through Morocco's deep Sahara dunes and remote rocky tracks.
+        </p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/212600000000" class="btn"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="hero_btn_wa">Direct WhatsApp assistance</span></a>
+          <a href="#services" class="btn ghost" data-i18n="hero_btn_services">Explore services</a>
+        </div>
       </div>
-      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-[#fff9f2] leading-tight mb-5 drop-shadow-md" data-i18n="hero_title">
-        4x4 Desert Mechanic & Expedition Escort
-      </h1>
-      <p class="text-[#edd1b8] text-sm sm:text-lg md:text-xl mb-8 leading-relaxed max-w-2xl mx-auto" data-i18n="hero_subtitle">
-        Specialized overland mechanic escorting international 4x4 convoys, rallies, and solo adventurers through Morocco's deep Sahara dunes and remote rocky tracks.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-3.5 sm:gap-4 justify-center">
-        <a href="https://wa.me/212600000000" class="bg-[#d97746] hover:bg-[#ca5c35] text-white font-extrabold px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-xl shadow-[#d97746]/30 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-sm sm:text-base">
-          <i class="fa-brands fa-whatsapp text-lg"></i> <span data-i18n="hero_btn_wa">Direct WhatsApp Assistance</span>
-        </a>
-        <a href="#services" class="bg-[#2c170f]/80 hover:bg-[#3d2015] text-[#f5d8c4] font-bold px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border border-[#743b23] transition text-sm sm:text-base" data-i18n="hero_btn_services">
-          Explore Services
-        </a>
+      <figure class="hero-photo">
+        <img src="cover.png" alt="Support 4x4 crossing Sahara dunes">
+      </figure>
+    </div>
+    <div class="route">
+      <div class="wrap route-in" style="padding:0 20px">
+        <div class="stop"><span class="stop-dot"></span><span class="stop-name">Marrakech</span><span class="stop-note" data-i18n="route_base">Base workshop</span></div>
+        <div class="stop"><span class="stop-dot"></span><span class="stop-name">Merzouga</span><span class="stop-note">Erg Chebbi</span></div>
+        <div class="stop"><span class="stop-dot"></span><span class="stop-name">Zagora</span><span class="stop-note" data-i18n="route_draa">Drâa valley</span></div>
+        <div class="stop"><span class="stop-dot"></span><span class="stop-name">Erg Chigaga</span><span class="stop-note" data-i18n="route_deep">Deep dunes</span></div>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="max-w-6xl mx-auto px-4 py-14 sm:py-20 border-b border-[#341b11]">
-    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-      <div>
-        <span class="text-[#d4a359] font-bold text-xs tracking-widest uppercase block mb-2" data-i18n="about_badge">Master of Dunes & Engines</span>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-[#fff9f2] mb-5 leading-snug" data-i18n="about_title">Born in the South, Trained for Extreme Desert Demands</h2>
-        <p class="text-[#edd1b8] text-sm leading-relaxed mb-4" data-i18n="about_p1">
-          Crossing the Moroccan Sahara requires more than just high clearance; it demands constant mechanical awareness. From scorching heat putting engines to the test, to fine dunes penetrating filtration systems, unexpected breakdowns can happen hundreds of kilometers away from any workshop.
+  <!-- About -->
+  <section id="about" class="wrap">
+    <div class="about-grid">
+      <figure class="about-photo">
+        <img src="cover.png" alt="Mechanic working in the Sahara">
+      </figure>
+      <div class="about-copy">
+        <div class="sec-head" style="margin-bottom:22px">
+          <h2 data-i18n="about_title">Born in the south, built for breakdowns</h2>
+        </div>
+        <p data-i18n="about_p1">
+          Crossing the Moroccan Sahara requires more than just high clearance; it demands constant mechanical awareness. From scorching heat putting engines to the test, to fine sand penetrating filtration systems, unexpected breakdowns can happen hundreds of kilometers away from any workshop.
         </p>
-        <p class="text-[#edd1b8] text-sm leading-relaxed mb-6" data-i18n="about_p2">
+        <p data-i18n="about_p2">
           Based out of Marrakech with deep roots across the southern pistes, we provide reassurance and technical resilience. Whether you are driving a Land Cruiser, Defender, Patrol, or an overland truck, we keep your wheels turning.
         </p>
-        <div class="grid grid-cols-2 gap-3.5">
-          <div class="bg-[#25130b] p-4 rounded-xl border border-[#4a2617]">
-            <span class="text-xl sm:text-2xl font-black text-[#d4a359] block mb-0.5">15+ Years</span>
-            <span class="text-[11px] sm:text-xs text-[#d8ba9e]" data-i18n="about_stat1">Desert Navigation & Mechanic</span>
-          </div>
-          <div class="bg-[#25130b] p-4 rounded-xl border border-[#4a2617]">
-            <span class="text-xl sm:text-2xl font-black text-[#d4a359] block mb-0.5">100%</span>
-            <span class="text-[11px] sm:text-xs text-[#d8ba9e]" data-i18n="about_stat2">Field Self-Reliance</span>
-          </div>
-        </div>
-      </div>
-      <div class="relative mt-4 md:mt-0">
-        <div class="w-full h-72 sm:h-96 rounded-2xl overflow-hidden border-2 border-[#5c301d] shadow-2xl relative">
-          <img src="cover.png" alt="Mechanic in Sahara" class="w-full h-full object-cover object-center">
+        <div class="spec-rows">
+          <div class="spec-row"><b>15+</b><span data-i18n="about_stat1">Years of desert navigation & mechanics</span></div>
+          <div class="spec-row"><b>100%</b><span data-i18n="about_stat2">Field self-reliance, no external tow needed</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section id="services" class="max-w-6xl mx-auto px-4 py-14 sm:py-20 border-b border-[#341b11]">
-    <div class="text-center mb-12 sm:mb-16">
-      <h2 class="text-[#d4a359] font-bold text-xs tracking-widest uppercase" data-i18n="services_badge">Field Capabilities</h2>
-      <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#fff9f2] mt-1.5" data-i18n="services_title">Comprehensive Off-Road Support</p>
+  <div class="rule"></div>
+
+  <!-- Services -->
+  <section id="services" class="wrap">
+    <div class="sec-head">
+      <h2 data-i18n="services_title">Off-road support, end to end</h2>
+      <p data-i18n="services_sub">From the workshop check before departure to recovery on the crest of a dune.</p>
     </div>
-
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-      <div class="bg-[#24130a] p-6 sm:p-8 rounded-2xl border border-[#442214] hover:border-[#d97746] transition duration-300">
-        <div class="w-12 h-12 bg-[#d97746]/15 text-[#e6c894] rounded-xl flex items-center justify-center mb-5 text-xl sm:text-2xl">
-          <i class="fa-solid fa-wrench"></i>
-        </div>
-        <h3 class="text-lg sm:text-xl font-bold mb-2.5 text-white" data-i18n="s1_title">Pre-Piste Workshop Check</h3>
-        <p class="text-[#d8ba9e] text-xs sm:text-sm leading-relaxed" data-i18n="s1_desc">
-          Comprehensive inspection in Marrakech: suspension, shock absorbers, sand air-filtration, cooling systems, fluids, and chassis readiness before departure.
-        </p>
+    <div class="services-panel">
+      <div class="service">
+        <i class="fa-solid fa-wrench"></i>
+        <h3 data-i18n="s1_title">Pre-piste workshop check</h3>
+        <p data-i18n="s1_desc">Comprehensive inspection in Marrakech: suspension, shock absorbers, sand air-filtration, cooling systems, fluids, and chassis readiness before departure.</p>
       </div>
-
-      <div class="bg-[#24130a] p-6 sm:p-8 rounded-2xl border border-[#442214] hover:border-[#d97746] transition duration-300">
-        <div class="w-12 h-12 bg-[#d97746]/15 text-[#e6c894] rounded-xl flex items-center justify-center mb-5 text-xl sm:text-2xl">
-          <i class="fa-solid fa-truck-pickup"></i>
-        </div>
-        <h3 class="text-lg sm:text-xl font-bold mb-2.5 text-white" data-i18n="s2_title">Trailing Support Vehicle</h3>
-        <p class="text-[#d8ba9e] text-xs sm:text-sm leading-relaxed" data-i18n="s2_desc">
-          Our fully prepped assistance 4x4 accompanies your convoy with heavy-duty air compressors, welding tools, jacks, recovery boards, and vital spares.
-        </p>
+      <div class="service">
+        <i class="fa-solid fa-truck-pickup"></i>
+        <h3 data-i18n="s2_title">Trailing support vehicle</h3>
+        <p data-i18n="s2_desc">Our fully prepped assistance 4x4 accompanies your convoy with heavy-duty air compressors, welding tools, jacks, recovery boards, and vital spares.</p>
       </div>
-
-      <div class="bg-[#24130a] p-6 sm:p-8 rounded-2xl border border-[#442214] hover:border-[#d97746] transition duration-300 sm:col-span-2 md:col-span-1">
-        <div class="w-12 h-12 bg-[#d97746]/15 text-[#e6c894] rounded-xl flex items-center justify-center mb-5 text-xl sm:text-2xl">
-          <i class="fa-solid fa-triangle-exclamation"></i>
-        </div>
-        <h3 class="text-lg sm:text-xl font-bold mb-2.5 text-white" data-i18n="s3_title">Desert SOS & Dune Recovery</h3>
-        <p class="text-[#d8ba9e] text-xs sm:text-sm leading-relaxed" data-i18n="s3_desc">
-          Stuck on a crest or suffered a snapped axle? Rapid response to recover, field-repair, and safely escort your vehicle back on track.
-        </p>
+      <div class="service">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <h3 data-i18n="s3_title">Desert SOS & dune recovery</h3>
+        <p data-i18n="s3_desc">Stuck on a crest or suffered a snapped axle? Rapid response to recover, field-repair, and safely escort your vehicle back on track.</p>
       </div>
     </div>
   </section>
 
-  <!-- Rig & Gear Section -->
-  <section id="rig" class="max-w-6xl mx-auto px-4 py-14 sm:py-20 border-b border-[#341b11]">
-    <div class="text-center mb-10 sm:mb-14">
-      <h2 class="text-[#d4a359] font-bold text-xs tracking-widest uppercase" data-i18n="rig_badge">The Gear</h2>
-      <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#fff9f2] mt-1.5" data-i18n="rig_title">Mobile Field Workshop Equipment</p>
+  <div class="rule"></div>
+
+  <!-- Rig & Gear -->
+  <section id="rig" class="wrap">
+    <div class="sec-head">
+      <h2 data-i18n="rig_title">The mobile field workshop</h2>
+      <p data-i18n="rig_sub">What rides in the assistance vehicle on every escort.</p>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-      <div class="bg-[#22120a] p-5 rounded-xl border border-[#3e1f12] text-center">
-        <i class="fa-solid fa-gauge-high text-2xl sm:text-3xl text-[#d4a359] mb-3"></i>
-        <h4 class="font-bold text-white text-sm sm:text-base mb-1" data-i18n="g1_title">Twin Compressors</h4>
-        <p class="text-[11px] sm:text-xs text-[#cca78b]" data-i18n="g1_desc">Instant inflation/deflation for high dunes & soft sands.</p>
+    <div class="gear-sheet">
+      <div class="gear-row">
+        <h4><i class="fa-solid fa-gauge-high"></i><span data-i18n="g1_title">Twin compressors</span></h4>
+        <p data-i18n="g1_desc">Instant inflation and deflation for high dunes and soft sands.</p>
       </div>
-      <div class="bg-[#22120a] p-5 rounded-xl border border-[#3e1f12] text-center">
-        <i class="fa-solid fa-gears text-2xl sm:text-3xl text-[#d4a359] mb-3"></i>
-        <h4 class="font-bold text-white text-sm sm:text-base mb-1" data-i18n="g2_title">12V/24V Arc Welding</h4>
-        <p class="text-[11px] sm:text-xs text-[#cca78b]" data-i18n="g2_desc">Chassis & bracket repairs directly on the piste.</p>
+      <div class="gear-row">
+        <h4><i class="fa-solid fa-gears"></i><span data-i18n="g2_title">12V/24V arc welding</span></h4>
+        <p data-i18n="g2_desc">Chassis and bracket repairs directly on the piste.</p>
       </div>
-      <div class="bg-[#22120a] p-5 rounded-xl border border-[#3e1f12] text-center">
-        <i class="fa-solid fa-car-battery text-2xl sm:text-3xl text-[#d4a359] mb-3"></i>
-        <h4 class="font-bold text-white text-sm sm:text-base mb-1" data-i18n="g3_title">OBD Diagnostics</h4>
-        <p class="text-[11px] sm:text-xs text-[#cca78b]" data-i18n="g3_desc">Live ECU sensor scans for modern common-rail 4x4s.</p>
+      <div class="gear-row">
+        <h4><i class="fa-solid fa-car-battery"></i><span data-i18n="g3_title">OBD diagnostics</span></h4>
+        <p data-i18n="g3_desc">Live ECU sensor scans for modern common-rail 4x4s.</p>
       </div>
-      <div class="bg-[#22120a] p-5 rounded-xl border border-[#3e1f12] text-center">
-        <i class="fa-solid fa-shield-halved text-2xl sm:text-3xl text-[#d4a359] mb-3"></i>
-        <h4 class="font-bold text-white text-sm sm:text-base mb-1" data-i18n="g4_title">Heavy Winch & Hi-Lift</h4>
-        <p class="text-[11px] sm:text-xs text-[#cca78b]" data-i18n="g4_desc">12,000 lbs pulling force & kinetic snatch ropes.</p>
+      <div class="gear-row">
+        <h4><i class="fa-solid fa-shield-halved"></i><span data-i18n="g4_title">Heavy winch & Hi-Lift</span></h4>
+        <p data-i18n="g4_desc">12,000 lbs pulling force and kinetic snatch ropes.</p>
       </div>
     </div>
   </section>
 
-  <!-- Blog Section -->
-  <section id="blog" class="max-w-6xl mx-auto px-4 py-14 sm:py-20 border-b border-[#341b11]">
-    <div class="text-center mb-12 sm:mb-16">
-      <h2 class="text-[#d4a359] font-bold text-xs tracking-widest uppercase" data-i18n="blog_badge">Field Insights</h2>
-      <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#fff9f2] mt-1.5" data-i18n="blog_title">Desert Overlanding Blog</p>
-    </div>
+  <div class="rule"></div>
 
-    <div class="grid md:grid-cols-3 gap-6 sm:gap-8">
-      <article class="bg-[#24130a] rounded-2xl overflow-hidden border border-[#442214] flex flex-col p-5 sm:p-6 justify-between">
+  <!-- Field log -->
+  <section id="blog" class="wrap">
+    <div class="sec-head">
+      <h2 data-i18n="blog_title">Notes from the field</h2>
+      <p data-i18n="blog_sub">Practical mechanics and route intelligence from escorts across the south.</p>
+    </div>
+    <div class="log">
+      <article class="log-entry">
+        <span class="log-tag" data-i18n="b1_tag">Tire management</span>
         <div>
-          <span class="text-[10px] sm:text-xs text-[#d4a359] font-semibold uppercase tracking-wider" data-i18n="b1_tag">Tire Management</span>
-          <h3 class="text-base sm:text-lg font-bold text-white mt-2 mb-2" data-i18n="b1_title">Tire Pressures for Erg Chebbi: When to Drop Below 1.0 Bar</h3>
-          <p class="text-[#d8ba9e] text-xs leading-relaxed" data-i18n="b1_desc">
-            How sand temperature alters tire pressure during mid-day and why beadlocks matter when turning through high slip faces.
-          </p>
+          <h3 data-i18n="b1_title">Tire pressures for Erg Chebbi: when to drop below 1.0 bar</h3>
+          <p data-i18n="b1_desc">How sand temperature alters tire pressure during mid-day and why beadlocks matter when turning through high slip faces.</p>
+          <a class="log-link" href="https://wa.me/212600000000"><span data-i18n="blog_read_btn">Ask about this on WhatsApp</span><i class="fa-brands fa-whatsapp"></i></a>
         </div>
-        <a href="https://wa.me/212600000000" class="text-xs font-bold text-[#d97746] hover:text-[#e6c894] mt-5 inline-flex items-center gap-1.5" data-i18n="blog_read_btn">
-          Inquire via WhatsApp <i class="fa-solid fa-arrow-right"></i>
-        </a>
       </article>
-
-      <article class="bg-[#24130a] rounded-2xl overflow-hidden border border-[#442214] flex flex-col p-5 sm:p-6 justify-between">
+      <article class="log-entry">
+        <span class="log-tag" data-i18n="b2_tag">Cooling systems</span>
         <div>
-          <span class="text-[10px] sm:text-xs text-[#d4a359] font-semibold uppercase tracking-wider" data-i18n="b2_tag">Cooling Systems</span>
-          <h3 class="text-base sm:text-lg font-bold text-white mt-2 mb-2" data-i18n="b2_title">Preventing Engine Overheating in Low-Range Crawling</h3>
-          <p class="text-[#d8ba9e] text-xs leading-relaxed" data-i18n="b2_desc">
-            Why fine fesh-fesh sand clogs radiators quickly and how a regular reverse air blast preserves your water pump and head gasket.
-          </p>
+          <h3 data-i18n="b2_title">Preventing engine overheating in low-range crawling</h3>
+          <p data-i18n="b2_desc">Why fine fesh-fesh sand clogs radiators quickly and how a regular reverse air blast preserves your water pump and head gasket.</p>
+          <a class="log-link" href="https://wa.me/212600000000"><span data-i18n="blog_read_btn">Ask about this on WhatsApp</span><i class="fa-brands fa-whatsapp"></i></a>
         </div>
-        <a href="https://wa.me/212600000000" class="text-xs font-bold text-[#d97746] hover:text-[#e6c894] mt-5 inline-flex items-center gap-1.5" data-i18n="blog_read_btn">
-          Inquire via WhatsApp <i class="fa-solid fa-arrow-right"></i>
-        </a>
       </article>
-
-      <article class="bg-[#24130a] rounded-2xl overflow-hidden border border-[#442214] flex flex-col p-5 sm:p-6 justify-between">
+      <article class="log-entry">
+        <span class="log-tag" data-i18n="b3_tag">Expedition routes</span>
         <div>
-          <span class="text-[10px] sm:text-xs text-[#d4a359] font-semibold uppercase tracking-wider" data-i18n="b3_tag">Expedition Routes</span>
-          <h3 class="text-base sm:text-lg font-bold text-white mt-2 mb-2" data-i18n="b3_title">Zagora to Foum Zguid via Lac Iriki: Essential Checklist</h3>
-          <p class="text-[#d8ba9e] text-xs leading-relaxed" data-i18n="b3_desc">
-            Navigating corrugated gravel pistes, sharp volcanic stones, and dunes. Key spare parts every driver must pack.
-          </p>
+          <h3 data-i18n="b3_title">Zagora to Foum Zguid via Lac Iriki: essential checklist</h3>
+          <p data-i18n="b3_desc">Navigating corrugated gravel pistes, sharp volcanic stones, and dunes. Key spare parts every driver must pack.</p>
+          <a class="log-link" href="https://wa.me/212600000000"><span data-i18n="blog_read_btn">Ask about this on WhatsApp</span><i class="fa-brands fa-whatsapp"></i></a>
         </div>
-        <a href="https://wa.me/212600000000" class="text-xs font-bold text-[#d97746] hover:text-[#e6c894] mt-5 inline-flex items-center gap-1.5" data-i18n="blog_read_btn">
-          Inquire via WhatsApp <i class="fa-solid fa-arrow-right"></i>
-        </a>
       </article>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="max-w-4xl mx-auto px-4 py-14 sm:py-20 text-center">
-    <span class="text-[#d4a359] font-bold text-xs tracking-widest uppercase block mb-2" data-i18n="contact_badge">Direct Contact</span>
-    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#fff9f2] mb-3" data-i18n="contact_title">Let's Secure Your Next Desert Expedition</h2>
-    <p class="text-[#edd1b8] text-xs sm:text-sm md:text-base mb-8 max-w-xl mx-auto" data-i18n="contact_subtitle">
-      Tell us your route, travel dates, and vehicle models. We will provide full mechanical escort options and preparation checks.
-    </p>
-
-    <div class="bg-[#24130a] p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-[#4a2617] shadow-xl flex flex-col sm:flex-row justify-around items-center gap-5">
-      <div class="text-center sm:text-left">
-        <span class="text-[10px] sm:text-xs text-[#cca78b] uppercase font-bold block" data-i18n="base_label">Base Location</span>
-        <span class="text-white font-semibold text-sm sm:text-base">Marrakech, Morocco</span>
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2 data-i18n="contact_title">Secure your next desert expedition</h2>
+      <p class="lead" data-i18n="contact_subtitle">Tell us your route, travel dates, and vehicle models. We will provide full mechanical escort options and preparation checks.</p>
+      <div class="contact-panel">
+        <div class="contact-cell">
+          <small data-i18n="base_label">Base location</small>
+          <strong>Marrakech, Morocco</strong>
+        </div>
+        <div class="contact-cell">
+          <small data-i18n="avail_label">Availability</small>
+          <strong data-i18n="avail_val">7 days a week, all of Morocco</strong>
+        </div>
+        <div class="contact-cell">
+          <a href="https://wa.me/212600000000" class="btn"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="btn_msg">Message us</span></a>
+        </div>
       </div>
-      <div class="h-8 w-px bg-[#442214] hidden sm:block"></div>
-      <div class="text-center sm:text-left">
-        <span class="text-[10px] sm:text-xs text-[#cca78b] uppercase font-bold block" data-i18n="avail_label">Availability</span>
-        <span class="text-white font-semibold text-sm sm:text-base" data-i18n="avail_val">7 Days / Week across Morocco</span>
-      </div>
-      <div class="h-8 w-px bg-[#442214] hidden sm:block"></div>
-      <a href="https://wa.me/212600000000" class="w-full sm:w-auto bg-[#d97746] hover:bg-[#ca5c35] text-white font-bold px-6 py-3 rounded-xl transition flex items-center justify-center gap-2 text-sm">
-        <i class="fa-brands fa-whatsapp text-lg"></i> <span data-i18n="btn_msg">Message Us</span>
-      </a>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="border-t border-[#341b11] py-8 text-center text-[#996f53] text-[11px] sm:text-xs px-4">
-    <p class="mb-1.5 font-semibold text-[#d4a359]">L'Échappée Nomade • Sahara 4x4 Support Vehicle & Mechanic</p>
-    <p>© Marrakech, Morocco. All rights reserved.</p>
+  <footer>
+    <div class="wrap foot-in">
+      <span><b>L'Échappée Nomade</b> — <span data-i18n="foot_line">Sahara 4x4 support vehicle & mechanic</span></span>
+      <span>© Marrakech, Morocco</span>
+    </div>
   </footer>
 
-  <!-- Translation & UI Script -->
   <script>
     const translations = {
       en: {
-        tagline: "Sahara 4x4 Mechanical Support",
+        tagline: "Sahara 4x4 mechanical support",
         nav_about: "About",
         nav_services: "Services",
-        nav_rig: "The Rig & Gear",
-        nav_blog: "Desert Blog",
+        nav_rig: "Rig & gear",
+        nav_blog: "Field log",
         nav_contact: "Contact",
-        btn_book: "Book Escort",
-        hero_badge: "Marrakech • Merzouga • Zagora • Erg Chigaga",
-        hero_title: "4x4 Desert Mechanic & Expedition Escort",
+        btn_book: "Book escort",
+        hero_line1: "Sahara",
+        hero_line2: "Mechanic",
+        hero_line3: "On piste",
         hero_subtitle: "Specialized overland mechanic escorting international 4x4 convoys, rallies, and solo adventurers through Morocco's deep Sahara dunes and remote rocky tracks.",
-        hero_btn_wa: "Direct WhatsApp Assistance",
-        hero_btn_services: "Explore Services",
-        about_badge: "Master of Dunes & Engines",
-        about_title: "Born in the South, Trained for Extreme Desert Demands",
-        about_p1: "Crossing the Moroccan Sahara requires more than just high clearance; it demands constant mechanical awareness. From scorching heat putting engines to the test, to fine dunes penetrating filtration systems, unexpected breakdowns can happen hundreds of kilometers away from any workshop.",
+        hero_btn_wa: "Direct WhatsApp assistance",
+        hero_btn_services: "Explore services",
+        route_base: "Base workshop",
+        route_draa: "Drâa valley",
+        route_deep: "Deep dunes",
+        about_title: "Born in the south, built for breakdowns",
+        about_p1: "Crossing the Moroccan Sahara requires more than just high clearance; it demands constant mechanical awareness. From scorching heat putting engines to the test, to fine sand penetrating filtration systems, unexpected breakdowns can happen hundreds of kilometers away from any workshop.",
         about_p2: "Based out of Marrakech with deep roots across the southern pistes, we provide reassurance and technical resilience. Whether you are driving a Land Cruiser, Defender, Patrol, or an overland truck, we keep your wheels turning.",
-        about_stat1: "Desert Navigation & Mechanic",
-        about_stat2: "Field Self-Reliance",
-        services_badge: "Field Capabilities",
-        services_title: "Comprehensive Off-Road Support",
-        s1_title: "Pre-Piste Workshop Check",
+        about_stat1: "Years of desert navigation & mechanics",
+        about_stat2: "Field self-reliance, no external tow needed",
+        services_title: "Off-road support, end to end",
+        services_sub: "From the workshop check before departure to recovery on the crest of a dune.",
+        s1_title: "Pre-piste workshop check",
         s1_desc: "Comprehensive inspection in Marrakech: suspension, shock absorbers, sand air-filtration, cooling systems, fluids, and chassis readiness before departure.",
-        s2_title: "Trailing Support Vehicle",
+        s2_title: "Trailing support vehicle",
         s2_desc: "Our fully prepped assistance 4x4 accompanies your convoy with heavy-duty air compressors, welding tools, jacks, recovery boards, and vital spares.",
-        s3_title: "Desert SOS & Dune Recovery",
+        s3_title: "Desert SOS & dune recovery",
         s3_desc: "Stuck on a crest or suffered a snapped axle? Rapid response to recover, field-repair, and safely escort your vehicle back on track.",
-        rig_badge: "The Gear",
-        rig_title: "Mobile Field Workshop Equipment",
-        g1_title: "Twin Compressors",
-        g1_desc: "Instant inflation/deflation for high dunes & soft sands.",
-        g2_title: "12V/24V Arc Welding",
-        g2_desc: "Chassis & bracket repairs directly on the piste.",
-        g3_title: "OBD Diagnostics",
+        rig_title: "The mobile field workshop",
+        rig_sub: "What rides in the assistance vehicle on every escort.",
+        g1_title: "Twin compressors",
+        g1_desc: "Instant inflation and deflation for high dunes and soft sands.",
+        g2_title: "12V/24V arc welding",
+        g2_desc: "Chassis and bracket repairs directly on the piste.",
+        g3_title: "OBD diagnostics",
         g3_desc: "Live ECU sensor scans for modern common-rail 4x4s.",
-        g4_title: "Heavy Winch & Hi-Lift",
-        g4_desc: "12,000 lbs pulling force & kinetic snatch ropes.",
-        blog_badge: "Field Insights",
-        blog_title: "Desert Overlanding Blog",
-        b1_tag: "Tire Management",
-        b1_title: "Tire Pressures for Erg Chebbi: When to Drop Below 1.0 Bar",
+        g4_title: "Heavy winch & Hi-Lift",
+        g4_desc: "12,000 lbs pulling force and kinetic snatch ropes.",
+        blog_title: "Notes from the field",
+        blog_sub: "Practical mechanics and route intelligence from escorts across the south.",
+        b1_tag: "Tire management",
+        b1_title: "Tire pressures for Erg Chebbi: when to drop below 1.0 bar",
         b1_desc: "How sand temperature alters tire pressure during mid-day and why beadlocks matter when turning through high slip faces.",
-        b2_tag: "Cooling Systems",
-        b2_title: "Preventing Engine Overheating in Low-Range Crawling",
+        b2_tag: "Cooling systems",
+        b2_title: "Preventing engine overheating in low-range crawling",
         b2_desc: "Why fine fesh-fesh sand clogs radiators quickly and how a regular reverse air blast preserves your water pump and head gasket.",
-        b3_tag: "Expedition Routes",
-        b3_title: "Zagora to Foum Zguid via Lac Iriki: Essential Checklist",
+        b3_tag: "Expedition routes",
+        b3_title: "Zagora to Foum Zguid via Lac Iriki: essential checklist",
         b3_desc: "Navigating corrugated gravel pistes, sharp volcanic stones, and dunes. Key spare parts every driver must pack.",
-        blog_read_btn: "Inquire via WhatsApp",
-        contact_badge: "Direct Contact",
-        contact_title: "Let's Secure Your Next Desert Expedition",
+        blog_read_btn: "Ask about this on WhatsApp",
+        contact_title: "Secure your next desert expedition",
         contact_subtitle: "Tell us your route, travel dates, and vehicle models. We will provide full mechanical escort options and preparation checks.",
-        base_label: "Base Location",
+        base_label: "Base location",
         avail_label: "Availability",
-        avail_val: "7 Days / Week across Morocco",
-        btn_msg: "Message Us"
+        avail_val: "7 days a week, all of Morocco",
+        btn_msg: "Message us",
+        foot_line: "Sahara 4x4 support vehicle & mechanic"
       },
       fr: {
-        tagline: "Assistance Mécanique Sahara 4x4",
-        nav_about: "À Propos",
+        tagline: "Assistance mécanique Sahara 4x4",
+        nav_about: "À propos",
         nav_services: "Services",
-        nav_rig: "Véhicule & Matériel",
-        nav_blog: "Blog Désert",
+        nav_rig: "Véhicule & matériel",
+        nav_blog: "Carnet de piste",
         nav_contact: "Contact",
-        btn_book: "Réserver Assistance",
-        hero_badge: "Marrakech • Merzouga • Zagora • Erg Chigaga",
-        hero_title: "Mécanicien Désert 4x4 & Escorte d'Expédition",
+        btn_book: "Réserver l'assistance",
+        hero_line1: "Mécano",
+        hero_line2: "Du désert",
+        hero_line3: "Sur piste",
         hero_subtitle: "Mécanicien overland spécialisé accompagnant convois 4x4, raids et voyageurs à travers les dunes profondes et les pistes rocailleuses du Sahara marocain.",
-        hero_btn_wa: "Assistance Directe WhatsApp",
-        hero_btn_services: "Découvrir les Services",
-        about_badge: "Expert des Pistes & Moteurs",
-        about_title: "Né dans le Sud, Formé aux Conditions Extrêmes du Désert",
+        hero_btn_wa: "Assistance directe WhatsApp",
+        hero_btn_services: "Découvrir les services",
+        route_base: "Atelier de base",
+        route_draa: "Vallée du Drâa",
+        route_deep: "Grandes dunes",
+        about_title: "Né dans le Sud, taillé pour la panne",
         about_p1: "Traverser le Sahara marocain exige bien plus qu'une garde au sol élevée ; cela requiert une vigilance mécanique constante. Entre la chaleur extrême qui éprouve les moteurs et le sable fin qui s'infiltre partout, les pannes surviennent souvent à des centaines de kilomètres du moindre atelier.",
         about_p2: "Basés à Marrakech avec une parfaite connaissance des pistes du Sud, nous garantissons votre sérénité. Que vous rouliez en Land Cruiser, Defender, Patrol ou camion d'expédition, nous assurons votre progression.",
-        about_stat1: "Navigation & Mécanique Désert",
-        about_stat2: "Autonomie Totale sur Piste",
-        services_badge: "Prestations Terrain",
-        services_title: "Assistance 4x4 Tout-Terrain Complète",
-        s1_title: "Check-up Atelier Avant-Piste",
+        about_stat1: "Années de navigation & mécanique désert",
+        about_stat2: "Autonomie totale sur piste, sans remorquage externe",
+        services_title: "Assistance tout-terrain, de A à Z",
+        services_sub: "Du check-up atelier avant le départ jusqu'au désensablage sur la crête d'une dune.",
+        s1_title: "Check-up atelier avant-piste",
         s1_desc: "Inspection complète à Marrakech : suspensions, filtration d'air anti-sable, refroidissement, vidanges et contrôle châssis avant le départ.",
-        s2_title: "Véhicule d'Assistance Dédié",
+        s2_title: "Véhicule d'assistance dédié",
         s2_desc: "Notre 4x4 d'assistance escorte votre convoi avec compresseurs puissants, poste à souder, crics haute levée, plaques et pièces de rechange essentielles.",
-        s3_title: "Dépannage SOS & Désensablage",
+        s3_title: "Dépannage SOS & désensablage",
         s3_desc: "Bloqué sur une crête ou casse mécanique ? Intervention rapide pour treuiller, réparer sur place et sécuriser votre parcours.",
-        rig_badge: "L'Équipement",
-        rig_title: "Atelier Mobile de Campagne",
-        g1_title: "Double Compresseur",
-        g1_desc: "Gonflage/dégonflage ultra-rapide pour sable mou et dunes.",
-        g2_title: "Soudure à l'Arc 12V/24V",
+        rig_title: "L'atelier mobile de campagne",
+        rig_sub: "Ce qui embarque dans le véhicule d'assistance à chaque escorte.",
+        g1_title: "Double compresseur",
+        g1_desc: "Gonflage et dégonflage ultra-rapides pour sable mou et dunes.",
+        g2_title: "Soudure à l'arc 12V/24V",
         g2_desc: "Réparation immédiate de tirants et pattes de fixation sur piste.",
-        g3_title: "Diagnostic Valise OBD",
+        g3_title: "Diagnostic valise OBD",
         g3_desc: "Lecture des calculateurs et capteurs pour 4x4 modernes.",
-        g4_title: "Treuil Lourd & Hi-Lift",
+        g4_title: "Treuil lourd & Hi-Lift",
         g4_desc: "Capacité 5,4 tonnes et sangles cinétiques de déplantage.",
-        blog_badge: "Conseils Techniques",
-        blog_title: "Blog Mécanique & Pistes",
+        blog_title: "Notes de terrain",
+        blog_sub: "Mécanique pratique et connaissance des pistes, tirées de nos escortes dans le Sud.",
         b1_tag: "Pneumatiques",
-        b1_title: "Pressions Pneus Erg Chebbi : Quand Descendre Sous 1.0 Bar",
+        b1_title: "Pressions pneus Erg Chebbi : quand descendre sous 1.0 bar",
         b1_desc: "Comment la température du sable modifie la pression à midi et l'importance du déjantage dans les devers.",
         b2_tag: "Refroidissement",
-        b2_title: "Éviter la Surchauffe Moteur en Vitesse Courte",
+        b2_title: "Éviter la surchauffe moteur en vitesse courte",
         b2_desc: "Pourquoi le fesh-fesh colmate rapidement les radiateurs et comment souffler à contre-courant préserve votre joint de culasse.",
         b3_tag: "Itinéraires",
-        b3_title: "Zagora - Foum Zguid par le Lac Iriki : Check-list Indispensable",
+        b3_title: "Zagora – Foum Zguid par le lac Iriki : check-list indispensable",
         b3_desc: "Naviguer sur la tôle ondulée, les cailloux coupants et les dunettes. Les pièces indispensables à emporter.",
-        blog_read_btn: "Consulter via WhatsApp",
-        contact_badge: "Contact Direct",
-        contact_title: "Sécurisons Votre Prochaine Aventure au Sahara",
+        blog_read_btn: "En parler sur WhatsApp",
+        contact_title: "Sécurisez votre prochaine expédition",
         contact_subtitle: "Indiquez-nous votre itinéraire, vos dates et vos modèles de véhicules. Nous vous proposerons la formule d'escorte adaptée.",
-        base_label: "Base Opérationnelle",
+        base_label: "Base opérationnelle",
         avail_label: "Disponibilité",
-        avail_val: "7j / 7 sur tout le Maroc",
-        btn_msg: "Nous Écrire"
+        avail_val: "7j/7 sur tout le Maroc",
+        btn_msg: "Nous écrire",
+        foot_line: "Véhicule d'assistance & mécanicien Sahara 4x4"
       }
     };
 
@@ -433,30 +568,32 @@
 
     function updateLanguage(lang) {
       currentLang = lang;
-      document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
-          element.textContent = translations[lang][key];
+          el.textContent = translations[lang][key];
         }
       });
       document.getElementById('currentLangLabel').textContent = lang === 'en' ? 'FR' : 'EN';
-      localStorage.setItem('site_lang', lang);
+      document.documentElement.lang = lang;
+      try { localStorage.setItem('site_lang', lang); } catch (e) {}
     }
 
     function toggleLanguage() {
-      const targetLang = currentLang === 'en' ? 'fr' : 'en';
-      updateLanguage(targetLang);
+      updateLanguage(currentLang === 'en' ? 'fr' : 'en');
     }
 
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('hidden');
+      const btn = document.getElementById('burgerBtn');
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
 
-    // Auto-detect previously saved language
     window.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('site_lang') || 'en';
-      updateLanguage(savedLang);
+      let saved = 'en';
+      try { saved = localStorage.getItem('site_lang') || 'en'; } catch (e) {}
+      updateLanguage(saved);
     });
   </script>
 </body>
