@@ -1,137 +1,301 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L'Échappée Nomade - Marrakech 4x4 Desert Mechanic & Overland Escort</title>
+  <title>L'Échappée Nomade - Sahara 4x4 Desert Mechanic & Overland Escort</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dune: {
+              50: '#fdf8f4',
+              100: '#faede2',
+              200: '#f5d8c4',
+              300: '#edbd9e',
+              400: '#e19771',
+              500: '#d97746',
+              600: '#ca5c35',
+              700: '#a7452b',
+              800: '#863928',
+              900: '#2b160e',
+              950: '#190c07',
+            },
+            sand: {
+              DEFAULT: '#e6c894',
+              gold: '#d4a359',
+              dark: '#211611',
+              warm: '#fff9f2',
+            }
+          }
+        }
+      }
+    }
+  </script>
   <style>
     .desert-hero {
-      background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=1600&auto=format&fit=crop');
+      background: linear-gradient(180deg, rgba(25, 12, 7, 0.7) 0%, rgba(33, 22, 17, 0.9) 100%), url('cover.png');
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased">
+<body class="bg-[#180e0a] text-[#f7ede2] font-sans antialiased selection:bg-[#d97746] selection:text-white">
 
-  <a href="https://wa.me/212600000000?text=Hello,%20I%20am%20planning%20a%204x4%20trip%20and%20need%20desert%20mechanical%20escort" target="_blank" class="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-600 text-white p-4 rounded-full shadow-2xl transition transform hover:scale-110 flex items-center justify-center">
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/212600000000?text=Hello,%20I%20am%20planning%20a%204x4%20trip%20and%20need%20desert%20mechanical%20escort" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20ba59] text-white p-4 rounded-full shadow-2xl transition duration-300 transform hover:scale-110 flex items-center justify-center border-2 border-[#fff9f2]/20">
     <i class="fa-brands fa-whatsapp text-3xl"></i>
   </a>
 
-  <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-40">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <i class="fa-solid fa-wrench text-amber-500 text-xl"></i>
-        <span class="font-extrabold text-base sm:text-lg tracking-wider uppercase text-white">L'Échappée Nomade</span>
-      </div>
-      <a href="https://wa.me/212600000000" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm transition">
+  <!-- Header / Navigation -->
+  <header class="border-b border-[#422416] bg-[#1a0e08]/95 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 py-3.5 flex justify-between items-center">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center space-x-2.5">
+        <span class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#ca5c35] to-[#d4a359] flex items-center justify-center text-white text-lg shadow-md">
+          <i class="fa-solid fa-compass"></i>
+        </span>
+        <div class="leading-tight">
+          <span class="font-black text-lg tracking-wide uppercase text-[#fdf8f4] block">L'Échappée Nomade</span>
+          <span class="text-[10px] text-[#e6c894] tracking-widest uppercase font-semibold">Sahara Desert Mechanical Escort</span>
+        </div>
+      </a>
+
+      <!-- Menu Links -->
+      <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-[#f5d8c4]">
+        <a href="#about" class="hover:text-[#d4a359] transition">About</a>
+        <a href="#services" class="hover:text-[#d4a359] transition">Services</a>
+        <a href="#rig" class="hover:text-[#d4a359] transition">The Rig & Gear</a>
+        <a href="#blog" class="hover:text-[#d4a359] transition">Desert Blog</a>
+        <a href="#contact" class="hover:text-[#d4a359] transition">Contact</a>
+      </nav>
+
+      <!-- Action Button -->
+      <a href="https://wa.me/212600000000" class="bg-gradient-to-r from-[#d97746] to-[#d4a359] hover:from-[#ca5c35] hover:to-[#c49247] text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-lg shadow-[#d97746]/20">
         Book Escort
       </a>
     </div>
   </header>
 
-  <section class="desert-hero min-h-[85vh] flex items-center justify-center text-center px-4 py-20">
-    <div class="max-w-3xl">
-      <div class="inline-block bg-amber-500/20 text-amber-400 font-semibold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest mb-6 border border-amber-500/30">
-        Marrakech Base • Merzouga • Zagora • M'Hamid Support
+  <!-- Hero Section -->
+  <section class="desert-hero min-h-[85vh] flex items-center justify-center text-center px-4 py-20 relative">
+    <div class="max-w-3xl relative z-10">
+      <div class="inline-flex items-center gap-2 bg-[#d97746]/20 text-[#e6c894] font-semibold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest mb-6 border border-[#d97746]/40 backdrop-blur-md">
+        <i class="fa-solid fa-sun text-[#d4a359]"></i> Marrakech • Merzouga • Zagora • Erg Chigaga
       </div>
-      <h1 class="text-4xl sm:text-6xl font-black text-white leading-tight mb-6">
-        4x4 Desert Mechanic & Overland Expedition Escort
+      <h1 class="text-4xl sm:text-6xl font-black text-[#fff9f2] leading-tight mb-6 drop-shadow-md">
+        4x4 Desert Mechanic & Expedition Escort
       </h1>
-      <p class="text-slate-300 text-base sm:text-xl mb-8 leading-relaxed">
-        Don't risk getting stranded in the Sahara. We accompany international drivers, overland rigs, and rallies with mobile mechanical support and dune recovery.
+      <p class="text-[#edd1b8] text-base sm:text-xl mb-10 leading-relaxed max-w-2xl mx-auto">
+        Specialized overland mechanic escorting international 4x4 convoys, rallies, and solo adventurers through Morocco's deep Sahara dunes and remote rocky tracks.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="https://wa.me/212600000000" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold px-8 py-4 rounded-xl shadow-lg transition">
-          Direct WhatsApp Chat
+        <a href="https://wa.me/212600000000" class="bg-[#d97746] hover:bg-[#ca5c35] text-white font-extrabold px-8 py-4 rounded-xl shadow-xl shadow-[#d97746]/30 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+          <i class="fa-brands fa-whatsapp text-lg"></i> Direct WhatsApp Assistance
         </a>
-        <a href="#rig" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-8 py-4 rounded-xl border border-slate-700 transition">
-          See Support Vehicle & Gear
+        <a href="#services" class="bg-[#2c170f]/80 hover:bg-[#3d2015] text-[#f5d8c4] font-bold px-8 py-4 rounded-xl border border-[#743b23] transition">
+          Explore Services
         </a>
       </div>
     </div>
   </section>
 
-  <section class="max-w-6xl mx-auto px-4 py-20">
+  <!-- About Section -->
+  <section id="about" class="max-w-6xl mx-auto px-4 py-20 border-b border-[#341b11]">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-[#d4a359] font-bold text-xs tracking-widest uppercase block mb-2">Master of Dunes & Engines</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-[#fff9f2] mb-6">Born in the South, Trained for Extreme Desert Demands</h2>
+        <p class="text-[#edd1b8] text-sm sm:text-base leading-relaxed mb-4">
+          Crossing the Moroccan Sahara requires more than just high clearance; it demands constant mechanical awareness. From scorching heat putting engines to the test, to fine dunes penetrating filtration systems, unexpected breakdowns can happen hundreds of kilometers away from any workshop.
+        </p>
+        <p class="text-[#edd1b8] text-sm sm:text-base leading-relaxed mb-6">
+          Based out of Marrakech with deep roots across the southern pistes, we provide reassurance and technical resilience. Whether you are driving a Land Cruiser, Defender, Patrol, or an overland truck, we keep your wheels turning.
+        </p>
+        <div class="grid grid-cols-2 gap-4 pt-2">
+          <div class="bg-[#25130b] p-4 rounded-xl border border-[#4a2617]">
+            <span class="text-2xl font-black text-[#d4a359] block mb-1">15+ Years</span>
+            <span class="text-xs text-[#d8ba9e]">Desert Navigation & Mechanic</span>
+          </div>
+          <div class="bg-[#25130b] p-4 rounded-xl border border-[#4a2617]">
+            <span class="text-2xl font-black text-[#d4a359] block mb-1">100%</span>
+            <span class="text-xs text-[#d8ba9e]">Field Self-Reliance</span>
+          </div>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="w-full h-96 rounded-2xl overflow-hidden border-2 border-[#5c301d] shadow-2xl relative">
+          <img src="cover.png" alt="Mechanic in Sahara" class="w-full h-full object-cover object-center">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="max-w-6xl mx-auto px-4 py-20 border-b border-[#341b11]">
     <div class="text-center mb-16">
-      <h2 class="text-amber-500 font-bold text-sm tracking-widest uppercase">Field Solutions</h2>
-      <p class="text-3xl font-extrabold text-white mt-2">Specialized Off-Road Services</p>
+      <h2 class="text-[#d4a359] font-bold text-xs tracking-widest uppercase">Field Capabilities</h2>
+      <p class="text-3xl sm:text-4xl font-extrabold text-[#fff9f2] mt-2">Comprehensive Off-Road Support</p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition">
-        <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center mb-6 text-2xl">
-          <i class="fa-solid fa-screwdriver-wrench"></i>
+      <!-- Service 1 -->
+      <div class="bg-[#24130a] p-8 rounded-2xl border border-[#442214] hover:border-[#d97746] transition duration-300">
+        <div class="w-12 h-12 bg-[#d97746]/15 text-[#e6c894] rounded-xl flex items-center justify-center mb-6 text-2xl">
+          <i class="fa-solid fa-wrench"></i>
         </div>
-        <h3 class="text-xl font-bold mb-3 text-white">Pre-Desert Workshop Check</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">
-          Suspension inspection, cooling upgrades, air filter protection, and chassis checks in Marrakech before hitting the pistes.
+        <h3 class="text-xl font-bold mb-3 text-white">Pre-Piste Workshop Check</h3>
+        <p class="text-[#d8ba9e] text-sm leading-relaxed">
+          Comprehensive inspection in Marrakech: suspension, shock absorbers, sand air-filtration, cooling systems, fluids, and chassis readiness before departure.
         </p>
       </div>
 
-      <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition">
-        <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center mb-6 text-2xl">
-          <i class="fa-solid fa-truck-monster"></i>
+      <!-- Service 2 -->
+      <div class="bg-[#24130a] p-8 rounded-2xl border border-[#442214] hover:border-[#d97746] transition duration-300">
+        <div class="w-12 h-12 bg-[#d97746]/15 text-[#e6c894] rounded-xl flex items-center justify-center mb-6 text-2xl">
+          <i class="fa-solid fa-truck-pickup"></i>
         </div>
-        <h3 class="text-xl font-bold mb-3 text-white">Full-Trail Escort Rig</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">
-          Our assistance 4x4 trails your expedition carrying welders, heavy compressors, diagnostic tools, and key spare parts.
+        <h3 class="text-xl font-bold mb-3 text-white">Trailing Support Vehicle</h3>
+        <p class="text-[#d8ba9e] text-sm leading-relaxed">
+          Our fully prepped assistance 4x4 accompanies your convoy with heavy-duty air compressors, welding tools, jacks, recovery boards, and vital spares.
         </p>
       </div>
 
-      <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition">
-        <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center mb-6 text-2xl">
-          <i class="fa-solid fa-compass"></i>
+      <!-- Service 3 -->
+      <div class="bg-[#24130a] p-8 rounded-2xl border border-[#442214] hover:border-[#d97746] transition duration-300">
+        <div class="w-12 h-12 bg-[#d97746]/15 text-[#e6c894] rounded-xl flex items-center justify-center mb-6 text-2xl">
+          <i class="fa-solid fa-triangle-exclamation"></i>
         </div>
-        <h3 class="text-xl font-bold mb-3 text-white">Dune Recovery & SOS</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">
-          Emergency winch-out, sand repairs, and field mechanics across Erg Chebbi, Erg Chigaga, and remote southern tracks.
+        <h3 class="text-xl font-bold mb-3 text-white">Desert SOS & Dune Recovery</h3>
+        <p class="text-[#d8ba9e] text-sm leading-relaxed">
+          Stuck on a crest or suffered a snapped axle? Rapid response to recover, field-repair, and safely escort your vehicle back on track.
         </p>
       </div>
     </div>
   </section>
 
-  <section id="rig" class="max-w-6xl mx-auto px-4 py-16 border-t border-slate-900">
-    <div class="text-center mb-12">
-      <h2 class="text-amber-500 font-bold text-sm tracking-widest uppercase">The Rig & Field Action</h2>
-      <p class="text-3xl font-extrabold text-white mt-2">Built for Tough Sahara Terrain</p>
+  <!-- Rig & Gear Section -->
+  <section id="rig" class="max-w-6xl mx-auto px-4 py-20 border-b border-[#341b11]">
+    <div class="text-center mb-14">
+      <h2 class="text-[#d4a359] font-bold text-xs tracking-widest uppercase">The Gear</h2>
+      <p class="text-3xl sm:text-4xl font-extrabold text-[#fff9f2] mt-2">Mobile Field Workshop Equipment</p>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=800&auto=format&fit=crop" alt="4x4 in desert" class="rounded-xl object-cover h-64 w-full border border-slate-800">
-      <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=800&auto=format&fit=crop" alt="Mechanical check" class="rounded-xl object-cover h-64 w-full border border-slate-800">
-      <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800&auto=format&fit=crop" alt="Expedition convoy" class="rounded-xl object-cover h-64 w-full border border-slate-800">
-    </div>
-  </section>
-
-  <section class="max-w-6xl mx-auto px-4 py-16 border-t border-slate-900">
-    <div class="text-center mb-12">
-      <h2 class="text-amber-500 font-bold text-sm tracking-widest uppercase">Testimonials</h2>
-      <p class="text-3xl font-extrabold text-white mt-2">Trusted by International Overlanders</p>
-    </div>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="bg-slate-900/60 p-6 rounded-xl border border-slate-800">
-        <div class="flex text-amber-400 mb-3">
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-        </div>
-        <p class="text-slate-300 italic text-sm mb-4">"We had a broken suspension arm near Zagora. Having this escort rig right behind our Defender saved the entire expedition. Fixed in less than two hours."</p>
-        <p class="font-bold text-white text-sm">Marcus & Elena Schmidt <span class="text-slate-500 font-normal">| Overlanders from Germany</span></p>
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="bg-[#22120a] p-6 rounded-xl border border-[#3e1f12] text-center">
+        <i class="fa-solid fa-gauge-high text-3xl text-[#d4a359] mb-4"></i>
+        <h4 class="font-bold text-white mb-1">Twin Compressors</h4>
+        <p class="text-xs text-[#cca78b]">Instant inflation/deflation for high dunes & soft sands.</p>
       </div>
-
-      <div class="bg-slate-900/60 p-6 rounded-xl border border-slate-800">
-        <div class="flex text-amber-400 mb-3">
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-        </div>
-        <p class="text-slate-300 italic text-sm mb-4">"Incredible knowledge of desert tracks and Toyotas. Essential support if you plan to cross Erg Chigaga without worrying about mechanical failure."</p>
-        <p class="font-bold text-white text-sm">Julien Mercier <span class="text-slate-500 font-normal">| Raid participant from France</span></p>
+      <div class="bg-[#22120a] p-6 rounded-xl border border-[#3e1f12] text-center">
+        <i class="fa-solid fa-gears text-3xl text-[#d4a359] mb-4"></i>
+        <h4 class="font-bold text-white mb-1">12V/24V Arc Welding</h4>
+        <p class="text-xs text-[#cca78b]">Chassis & bracket repairs directly on the piste.</p>
+      </div>
+      <div class="bg-[#22120a] p-6 rounded-xl border border-[#3e1f12] text-center">
+        <i class="fa-solid fa-car-battery text-3xl text-[#d4a359] mb-4"></i>
+        <h4 class="font-bold text-white mb-1">OBD Diagnostics</h4>
+        <p class="text-xs text-[#cca78b]">Live ECU sensor scans for modern common-rail 4x4s.</p>
+      </div>
+      <div class="bg-[#22120a] p-6 rounded-xl border border-[#3e1f12] text-center">
+        <i class="fa-solid fa-shield-halved text-3xl text-[#d4a359] mb-4"></i>
+        <h4 class="font-bold text-white mb-1">Heavy Winch & Hi-Lift</h4>
+        <p class="text-xs text-[#cca78b]">12,000 lbs pulling force & kinetic snatch ropes.</p>
       </div>
     </div>
   </section>
 
-  <footer class="border-t border-slate-900 py-10 text-center text-slate-500 text-sm">
-    <p class="mb-2 font-semibold text-slate-400">L'Échappée Nomade • Marrakech, Morocco</p>
-    <p>© Marrakech 4x4 Desert Mechanic & Support Services.</p>
+  <!-- Blog Section -->
+  <section id="blog" class="max-w-6xl mx-auto px-4 py-20 border-b border-[#341b11]">
+    <div class="text-center mb-16">
+      <h2 class="text-[#d4a359] font-bold text-xs tracking-widest uppercase">Field Insights</h2>
+      <p class="text-3xl sm:text-4xl font-extrabold text-[#fff9f2] mt-2">Desert Overlanding Blog</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Post 1 -->
+      <article class="bg-[#24130a] rounded-2xl overflow-hidden border border-[#442214] flex flex-col">
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-xs text-[#d4a359] font-semibold uppercase tracking-wider">Tire Management</span>
+            <h3 class="text-lg font-bold text-white mt-2 mb-3">Tire Pressures for Erg Chebbi: When to Drop Below 1.0 Bar</h3>
+            <p class="text-[#d8ba9e] text-xs leading-relaxed">
+              How sand temperature alters tire pressure during mid-day and why beadlocks matter when turning through high slip faces.
+            </p>
+          </div>
+          <a href="https://wa.me/212600000000?text=I%20have%20a%20question%20about%20desert%20tire%20prep" class="text-xs font-bold text-[#d97746] hover:text-[#e6c894] mt-5 inline-flex items-center gap-1.5">
+            Read Advice via WhatsApp <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="bg-[#24130a] rounded-2xl overflow-hidden border border-[#442214] flex flex-col">
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-xs text-[#d4a359] font-semibold uppercase tracking-wider">Cooling Systems</span>
+            <h3 class="text-lg font-bold text-white mt-2 mb-3">Preventing Engine Overheating in Low-Range Crawling</h3>
+            <p class="text-[#d8ba9e] text-xs leading-relaxed">
+              Why fine fesh-fesh sand clogs radiators quickly and how a regular reverse air blast preserves your water pump and head gasket.
+            </p>
+          </div>
+          <a href="https://wa.me/212600000000?text=Tell%20me%20more%20about%20cooling%20prep" class="text-xs font-bold text-[#d97746] hover:text-[#e6c894] mt-5 inline-flex items-center gap-1.5">
+            Read Advice via WhatsApp <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- Post 3 -->
+      <article class="bg-[#24130a] rounded-2xl overflow-hidden border border-[#442214] flex flex-col">
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-xs text-[#d4a359] font-semibold uppercase tracking-wider">Expedition Routes</span>
+            <h3 class="text-lg font-bold text-white mt-2 mb-3">Zagora to Foum Zguid via Lac Iriki: Essential Checklist</h3>
+            <p class="text-[#d8ba9e] text-xs leading-relaxed">
+              Navigating corrugated gravel pistes, sharp volcanic stones, and dunes. Key spare parts every driver must pack.
+            </p>
+          </div>
+          <a href="https://wa.me/212600000000?text=I%20need%20details%20about%20Zagora%20to%20Foum%20Zguid%20route" class="text-xs font-bold text-[#d97746] hover:text-[#e6c894] mt-5 inline-flex items-center gap-1.5">
+            Read Advice via WhatsApp <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="max-w-4xl mx-auto px-4 py-20 text-center">
+    <span class="text-[#d4a359] font-bold text-xs tracking-widest uppercase block mb-2">Direct Contact</span>
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-[#fff9f2] mb-4">Let's Secure Your Next Desert Expedition</h2>
+    <p class="text-[#edd1b8] text-sm sm:text-base mb-8 max-w-xl mx-auto">
+      Tell us your route, travel dates, and vehicle models. We will provide full mechanical escort options and preparation checks.
+    </p>
+
+    <div class="bg-[#24130a] p-8 rounded-3xl border border-[#4a2617] shadow-xl flex flex-col sm:flex-row justify-around items-center gap-6">
+      <div class="text-center sm:text-left">
+        <span class="text-xs text-[#cca78b] uppercase font-bold block">Base Location</span>
+        <span class="text-white font-semibold text-base">Marrakech, Morocco</span>
+      </div>
+      <div class="h-10 w-px bg-[#442214] hidden sm:block"></div>
+      <div class="text-center sm:text-left">
+        <span class="text-xs text-[#cca78b] uppercase font-bold block">Availability</span>
+        <span class="text-white font-semibold text-base">7 Days / Week across Morocco</span>
+      </div>
+      <div class="h-10 w-px bg-[#442214] hidden sm:block"></div>
+      <a href="https://wa.me/212600000000" class="bg-[#d97746] hover:bg-[#ca5c35] text-white font-bold px-6 py-3 rounded-xl transition flex items-center gap-2">
+        <i class="fa-brands fa-whatsapp text-lg"></i> Message Us
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-[#341b11] py-10 text-center text-[#996f53] text-xs">
+    <p class="mb-2 font-semibold text-[#d4a359]">L'Échappée Nomade • Sahara 4x4 Support Vehicle & Mechanic</p>
+    <p>© Marrakech, Morocco. All rights reserved.</p>
   </footer>
 
 </body>
